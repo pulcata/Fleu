@@ -1,0 +1,26 @@
+apply from: "store/setup/version.gradle"
+
+ext {
+    // Project
+    project_version_code = 1
+    project_version_name = '1.0.0'
+    project_application_id = 'com.tec.gravity'
+    project_min_sdk_version = 21
+    project_build_sdk_version = 28
+
+    // Config
+    utf_8_encoding = 'UTF-8'
+    test_instrumentation_runner = 'androidx.test.runner.AndroidJUnitRunner'
+    abi_filters_versions = ["arm64-v8a", "armeabi-v7a", "x86", "x86_64"]
+    res_config_codes = ["en", "es"]
+    lint_options_disables = ['TextFields', 'LabelFor', 'InflateParams', 'ContentDescription', 'KeyboardInaccessibleWidget', 'Autofill']
+
+    // Store
+    keystore_path_debug = '../store/keys/debug.keystore'
+    keystore_path_release = '../store/keys/release.keystore'
+    proguard_path_default = 'proguard-android.txt'
+    proguard_path_debug = '../store/proguards/proguard-rules-debug.pro'
+    proguard_path_release = '../store/proguards/proguard-rules-release.pro'
+    proguard_common = '../store/proguards/proguard-common.pro'
+    proguard_test = '../store/proguards/proguard-test.pro'
+}

@@ -1,0 +1,43 @@
+ext {
+    // Java
+    java_version = '8'
+    jvm_version = '1.8'
+
+    // Android
+    android_build_tools_maven_url = 'https://dl.bintray.com/android/android-tools'
+    jitpack_maven_url = 'https://jitpack.io'
+    kotlinx_maven_url = 'https://kotlin.bintray.com/kotlinx/'
+    android_build_tools_version = '3.3.2'
+    kotlin_version = '1.3.30'
+    support_version = '28.0.2'
+    multidex_version = '2.0.1'
+    constraint_layout_version = '1.1.3'
+    app_compat_version = '1.1.0'
+    recycler_view_version = '1.0.0'
+    exif_version = '1.0.0'
+    emoji_version = "28.0.0"
+    lifecycle_version = "2.0.0"
+    ktx_version = '1.1.0'
+
+    // Test
+    j_unit_version = '4.12'
+    hamkrest_version = '1.7.0.0'
+    mockito_version = '2.0.0'
+    androidx_test_version = '1.1.1'
+    androidx_test_ext_version = '1.1.0'
+    androidx_core_testing_version = '2.0.0'
+    espresso_version = '3.2.0'
+    robolectric_version = '4.2.1'
+    jacoco_version = '0.8.3'
+
+    //Networking
+    retrofit_version = '2.6.1'
+    okhttp_interceptor_version = '4.0.1'
+
+    //Coroutines
+    coroutines_version = '1.3.2'
+
+    //DI
+    dagger_version = '2.23.2'
+    dagger_annotations_version = '0.5.0'
+}
