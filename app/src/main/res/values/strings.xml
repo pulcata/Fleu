@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Fleu</string>
+    <string name="enter_place_address">Enter place address</string>
+    <string name="choose_on_map">Choose on map</string>
 </resources>

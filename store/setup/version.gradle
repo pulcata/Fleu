@@ -40,4 +40,7 @@ ext {
     //DI
     dagger_version = '2.23.2'
     dagger_annotations_version = '0.5.0'
+
+    //Location services
+    location_services_version = '17.0.0'
 }
