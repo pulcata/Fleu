@@ -7,13 +7,14 @@
 
     <application
         android:name=".FleuApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.PlaceAddressActivity"></activity>
+
+        <activity android:name=".ui.PlaceAddressActivity"/>
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.PlacesActivity" />
         <activity android:name=".MainActivity">
