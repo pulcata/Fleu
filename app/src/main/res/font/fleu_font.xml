@@ -20,34 +20,4 @@
         app:fontStyle="normal"
         app:fontWeight="700" />
 
-    <!-- light -->
-    <font
-        app:font="@font/light"
-        app:fontStyle="normal"
-        app:fontWeight="700" />
-
-    <!-- light italic -->
-    <font
-        app:font="@font/lightitalic"
-        app:fontStyle="italic"
-        app:fontWeight="700" />
-
-    <!-- bold italic -->
-    <font
-        app:font="@font/bolditalic"
-        app:fontStyle="italic"
-        app:fontWeight="700" />
-
-    <!-- extra bold -->
-    <font
-        app:font="@font/extrabold"
-        app:fontStyle="normal"
-        app:fontWeight="700" />
-
-    <!-- extra bold italic -->
-    <font
-        app:font="@font/extrabolditalic"
-        app:fontStyle="italic"
-        app:fontWeight="700" />
-
 </font-family>

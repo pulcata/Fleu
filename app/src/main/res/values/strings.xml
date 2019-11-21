@@ -1,5 +1,19 @@
 <resources>
-    <string name="app_name">Fleu</string>
     <string name="enter_place_address">Enter place address</string>
     <string name="choose_on_map">Choose on map</string>
+    <string name="title_activity_pick_address">Map</string>
+
+    <!--  General  -->
+    <string name="app_name">Fleu</string>
+    <string name="ok">Ok</string>
+
+    <!--Permissions -->
+    <string name="title_location_permission">Permission required</string>
+    <string name="text_location_permission">We need your location to know when we will send the notifications.</string>
+
+    <!--  Map  -->
+    <string name="address_complement">%s, %s</string>
+    <string name="save">Save</string>
+    <string name="my_place_title">My Place</string>
+
 </resources>

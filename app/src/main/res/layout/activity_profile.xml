@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Savir"
         android:textSize="20sp"
-        android:fontFamily="@font/extrabold"
+        android:fontFamily="@font/bold"
         android:textAlignment="center"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bold"
-        android:text="My Place"
+        android:text="@string/my_place_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description"
@@ -72,6 +72,8 @@
         app:layout_constraintTop_toBottomOf="@id/locationTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="The address goes here"/>
+        android:text="The address goes here"
+        android:maxLines="1"
+        android:ellipsize="end"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

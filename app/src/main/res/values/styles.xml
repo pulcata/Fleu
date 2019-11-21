@@ -15,4 +15,13 @@
         <item name="android:fontFamily">@font/fleu_font</item>
     </style>
 
+    <style name="RoundedEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/rounded_edittext</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:layout_height">54dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
+    </style>
+
 </resources>

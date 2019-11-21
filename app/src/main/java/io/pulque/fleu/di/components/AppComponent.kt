@@ -6,9 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import io.pulque.fleu.FleuApplication
-import io.pulque.fleu.di.modules.ActivityModule
-import io.pulque.fleu.di.modules.HelperModule
-import io.pulque.fleu.di.modules.RetrofitModule
+import io.pulque.fleu.di.modules.*
 import io.pulque.fleu.net.FleuApi
 import javax.inject.Singleton
 
@@ -19,7 +17,10 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         ActivityModule::class,
         RetrofitModule::class,
-        HelperModule::class
+        HelperModule::class,
+        LocationModule::class,
+        RepositoryModule::class,
+        ViewModelModule::class
     ]
 )
 
