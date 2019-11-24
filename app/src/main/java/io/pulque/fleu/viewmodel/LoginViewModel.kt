@@ -7,10 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
-import io.pulque.fleu.model.presentation.UserInfo
-import io.pulque.fleu.datasource.DataResponse
+import io.pulque.fleu.data.model.presentation.UserInfo
+import io.pulque.fleu.data.DataResponse
 import io.pulque.fleu.repository.login.LoginRepository
 import io.pulque.fleu.utils.errors.FleuDataError
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -42,15 +43,18 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         }
     }
 
-    fun retrieveGoogleTokenFromcCurrentSession(firebaseUser: FirebaseUser?, task: Task<AuthResult>){
-        if (task.isSuccessful) {
-            firebaseUser?.getIdToken(true)?.addOnSuccessListener {
-                it.token?.let { token ->
-                    validateRegister(token)
-                } ?: notifyErrorMutableLiveData.postValue(FleuDataError.GoogleLoginError())
+    fun retrieveGoogleTokenFromCurrentSession(firebaseUser: FirebaseUser?, task: Task<AuthResult>){
+
+        viewModelScope.launch(Dispatchers.IO) {
+            if (task.isSuccessful) {
+                firebaseUser?.getIdToken(false)?.addOnSuccessListener {
+                    it.token?.let { token ->
+                        validateRegister(token)
+                    } ?: notifyErrorMutableLiveData.postValue(FleuDataError.GoogleLoginError())
+                }
+            } else {
+                notifyErrorMutableLiveData.postValue(FleuDataError.UserNotFound())
             }
-        } else {
-            notifyErrorMutableLiveData.postValue(FleuDataError.UserNotFound())
         }
     }
 }

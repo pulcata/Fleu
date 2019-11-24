@@ -1,4 +1,4 @@
-package io.pulque.fleu.model.remote
+package io.pulque.fleu.data.model.remote
 
 import com.google.gson.annotations.SerializedName
 
@@ -18,5 +18,8 @@ data class UserInfoResponse(
     val picture: String,
 
     @SerializedName("username")
-    val username: String
+    val username: String,
+
+    @SerializedName("places")
+    val places: List<PlaceResponse>
 )

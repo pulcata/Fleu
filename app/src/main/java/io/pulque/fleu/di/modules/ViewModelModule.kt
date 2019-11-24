@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import io.pulque.fleu.di.ViewModelFactory
 import io.pulque.fleu.di.annotations.ViewModelKey
+import io.pulque.fleu.viewmodel.HomeViewModel
 import io.pulque.fleu.viewmodel.LoginViewModel
 import io.pulque.fleu.viewmodel.PlaceAddressViewModel
 
@@ -22,6 +23,11 @@ abstract class ViewModelModule{
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindLoginViewModel(loginViewModel: LoginViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    abstract fun bindHomeViewModel(homeViewModel: HomeViewModel) : ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(sampleViewModelFactory: ViewModelFactory): ViewModelProvider.Factory

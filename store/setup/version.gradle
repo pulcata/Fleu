@@ -56,6 +56,8 @@ ext {
 
     //Google Services
     google_services_auth_version = '17.0.0'
-
     google_services_version = '4.3.3'
+
+    //Glide
+    glide_version = '4.10.0'
 }

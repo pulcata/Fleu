@@ -25,4 +25,7 @@ abstract class ActivityModule{
 
     @ContributesAndroidInjector
     abstract fun contributesLoginActivity() : LoginActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributesHomeActivity() : HomeActivity
 }

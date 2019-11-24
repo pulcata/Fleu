@@ -1,4 +1,4 @@
-package io.pulque.fleu.datasource
+package io.pulque.fleu.data
 
 import io.pulque.fleu.utils.errors.FleuDataError
 

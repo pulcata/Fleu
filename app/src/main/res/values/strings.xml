@@ -16,4 +16,8 @@
     <string name="save">Save</string>
     <string name="my_place_title">My Place</string>
 
+    <!--  Profile  -->
+    <string name="username_template">\@%s</string>
+    <string name="add_place">Add place</string>
+
 </resources>

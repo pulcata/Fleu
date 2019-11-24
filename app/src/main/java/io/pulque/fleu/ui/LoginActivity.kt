@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 const val FIREBASE_LOGIN_REQUEST_CODE = 1000
 
-class LoginActivity : DaggerAppCompatActivity() {
+class LoginActivity : FleuBaseActivity() {
 
     @Inject
     lateinit var googleSignInClient: GoogleSignInClient
@@ -41,7 +41,7 @@ class LoginActivity : DaggerAppCompatActivity() {
         val currentAccount = GoogleSignIn.getLastSignedInAccount(this)
 
         currentAccount?.let {
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
     }
@@ -64,7 +64,8 @@ class LoginActivity : DaggerAppCompatActivity() {
 
     private fun subscribeUserInfo() {
         loginViewModel.userInfo.observe(this, Observer {
-            Timber.d(it.email)
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         })
     }
 
@@ -86,16 +87,12 @@ class LoginActivity : DaggerAppCompatActivity() {
         })
     }
 
-    private fun showErrorMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
 
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         googleAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
-                loginViewModel.retrieveGoogleTokenFromcCurrentSession(googleAuth.currentUser, task)
+                loginViewModel.retrieveGoogleTokenFromCurrentSession(googleAuth.currentUser, task)
             }
     }
 

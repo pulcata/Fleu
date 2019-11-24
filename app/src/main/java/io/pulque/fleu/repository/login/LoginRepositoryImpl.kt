@@ -1,9 +1,9 @@
 package io.pulque.fleu.repository.login
 
-import io.pulque.fleu.datasource.DataResponse
-import io.pulque.fleu.datasource.local.sharedpreference.FleuSharedPreferences
-import io.pulque.fleu.datasource.remote.net.FleuApi
-import io.pulque.fleu.parsers.toUserInfo
+import io.pulque.fleu.data.DataResponse
+import io.pulque.fleu.data.local.sharedpreference.FleuSharedPreferences
+import io.pulque.fleu.data.remote.net.FleuApi
+import io.pulque.fleu.data.mappers.toUserInfo
 import io.pulque.fleu.utils.errors.FleuDataError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

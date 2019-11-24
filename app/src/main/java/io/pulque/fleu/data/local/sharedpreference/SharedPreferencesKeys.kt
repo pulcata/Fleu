@@ -1,4 +1,4 @@
-package io.pulque.fleu.datasource.local.sharedpreference
+package io.pulque.fleu.data.local.sharedpreference
 
 /*
  * @author savirdev on 2019-11-24

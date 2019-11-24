@@ -1,4 +1,4 @@
-package io.pulque.fleu.model.presentation
+package io.pulque.fleu.data.model.presentation
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -9,8 +9,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class UserInfo(
+
     val name: String,
     val email: String,
     val picture: String,
-    val username: String
+    val username: String,
+    val places: List<Place>
+
 ) : Parcelable
