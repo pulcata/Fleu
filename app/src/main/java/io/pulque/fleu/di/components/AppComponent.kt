@@ -7,7 +7,6 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import io.pulque.fleu.FleuApplication
 import io.pulque.fleu.di.modules.*
-import io.pulque.fleu.net.FleuApi
 import javax.inject.Singleton
 
 @Singleton
@@ -20,7 +19,8 @@ import javax.inject.Singleton
         HelperModule::class,
         LocationModule::class,
         RepositoryModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        FirebaseModule::class
     ]
 )
 

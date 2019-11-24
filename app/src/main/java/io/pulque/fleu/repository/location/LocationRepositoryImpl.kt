@@ -2,7 +2,6 @@ package io.pulque.fleu.repository.location
 
 import android.location.Address
 import android.location.Geocoder
-import io.pulque.fleu.repository.LocationRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber

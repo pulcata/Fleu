@@ -18,10 +18,10 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField 'String', 'BASE_URL', '"https://ordering.app/api/"'
+            buildConfigField 'String', 'BASE_URL', '"http://192.168.0.3:3800/api/"'
         }
         release {
-            buildConfigField 'String', 'BASE_URL', '"https://ordering.app/api/"'
+            buildConfigField 'String', 'BASE_URL', '"http://192.168.0.3:3800/api/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -67,4 +67,10 @@ dependencies {
     //ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$view_model_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$view_model_extension_version"
+
+    //Firebase Auth
+    implementation "com.google.android.gms:play-services-auth:$google_services_auth_version"
+    implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
 }
+
+apply plugin: 'com.google.gms.google-services'

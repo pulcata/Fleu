@@ -1,4 +1,4 @@
-package io.pulque.fleu.repository
+package io.pulque.fleu.repository.location
 
 import android.location.Address
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.pulque.fleu.repository.LocationRepository
+import io.pulque.fleu.repository.location.LocationRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

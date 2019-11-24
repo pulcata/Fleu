@@ -3,10 +3,7 @@ package io.pulque.fleu.di.modules
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import io.pulque.fleu.MainActivity
-import io.pulque.fleu.ui.PickAddressActivity
-import io.pulque.fleu.ui.PlaceAddressActivity
-import io.pulque.fleu.ui.PlacesActivity
-import io.pulque.fleu.ui.ProfileActivity
+import io.pulque.fleu.ui.*
 
 @Module
 abstract class ActivityModule{
@@ -25,4 +22,7 @@ abstract class ActivityModule{
 
     @ContributesAndroidInjector
     abstract fun contributesPlaceAddressActivity() : PlaceAddressActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributesLoginActivity() : LoginActivity
 }
