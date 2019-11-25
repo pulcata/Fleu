@@ -1,5 +1,8 @@
 package io.pulque.fleu
 
+import com.google.firebase.FirebaseApp
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import io.pulque.fleu.di.components.DaggerAppComponent
@@ -13,6 +16,8 @@ class FleuApplication : DaggerApplication(){
 
     override fun onCreate() {
         super.onCreate()
+
+        FirebaseApp.initializeApp(this)
 
         if(BuildConfig.DEBUG){
             Timber.plant(Timber.DebugTree())
