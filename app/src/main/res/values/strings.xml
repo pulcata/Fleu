@@ -1,5 +1,6 @@
 <resources>
     <string name="enter_place_address">Enter place address</string>
+    <string name="enter_place_nickname">Enter place nickname</string>
     <string name="choose_on_map">Choose on map</string>
     <string name="title_activity_pick_address">Map</string>
 
@@ -19,5 +20,6 @@
     <!--  Profile  -->
     <string name="username_template">\@%s</string>
     <string name="add_place">Add place</string>
+    <string name="place_address_title"><![CDATA[Place nickname & address]]></string>
 
 </resources>

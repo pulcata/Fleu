@@ -1,7 +1,7 @@
 package io.pulque.fleu.data.mappers
 
 import io.pulque.fleu.data.model.presentation.UserInfo
-import io.pulque.fleu.data.model.remote.UserInfoResponse
+import io.pulque.fleu.data.model.remote.response.UserInfoResponse
 
 /*
  * @author savirdev on 2019-11-24

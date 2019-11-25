@@ -1,4 +1,4 @@
-package io.pulque.fleu.data.model.remote
+package io.pulque.fleu.data.model.remote.response
 
 import com.google.gson.annotations.SerializedName
 import java.util.*
@@ -16,8 +16,5 @@ data class PlaceResponse(
     val lat: Double,
 
     @SerializedName("lon")
-    val lon: Double,
-
-    @SerializedName("createdAt")
-    val createdAt: Date
+    val lon: Double
 )

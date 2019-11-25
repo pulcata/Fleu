@@ -1,6 +1,7 @@
 package io.pulque.fleu.ui
 
 import android.content.Intent
+import android.location.Address
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -11,7 +12,13 @@ import io.pulque.fleu.R
 import io.pulque.fleu.di.ViewModelFactory
 import io.pulque.fleu.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_home.name
+import kotlinx.android.synthetic.main.activity_home.profileImage
+import kotlinx.android.synthetic.main.activity_home.username
+import kotlinx.android.synthetic.main.activity_profile.*
 import javax.inject.Inject
+
+private const val REQUEST_ADDRESS = 10
 
 class HomeActivity : FleuBaseActivity() {
 
@@ -33,6 +40,10 @@ class HomeActivity : FleuBaseActivity() {
 
     private fun setupAddPlaceButton(){
         addPlace.setOnClickListener {
+            startActivity(Intent(this, PlaceAddressActivity::class.java))
+        }
+
+        place.setOnClickListener{
             startActivity(Intent(this, PlaceAddressActivity::class.java))
         }
     }
@@ -62,5 +73,15 @@ class HomeActivity : FleuBaseActivity() {
         homeViewModel?.error?.observe(this, Observer {
 
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_ADDRESS){
+            if (resultCode == RESULT_SAVE){
+                homeViewModel?.getUserInfo()
+            }
+        }
     }
 }

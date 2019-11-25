@@ -18,4 +18,7 @@ sealed class FleuDataError : Throwable(){
 
     //Google login
     class GoogleLoginError : FleuDataError()
+
+    //Place
+    class PlaceNotAddedError() : FleuDataError()
 }

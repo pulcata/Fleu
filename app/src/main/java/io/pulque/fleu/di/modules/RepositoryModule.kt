@@ -9,6 +9,8 @@ import io.pulque.fleu.repository.location.LocationRepository
 import io.pulque.fleu.repository.location.LocationRepositoryImpl
 import io.pulque.fleu.repository.login.LoginRepository
 import io.pulque.fleu.repository.login.LoginRepositoryImpl
+import io.pulque.fleu.repository.place.PlaceRepository
+import io.pulque.fleu.repository.place.PlaceRepositoryImpl
 import io.pulque.fleu.repository.user.UserRepository
 import io.pulque.fleu.repository.user.UserRespositoryImpl
 
@@ -23,4 +25,7 @@ class RepositoryModule {
 
     @Provides
     fun providesUserRepository(fleuApi: FleuApi, fleuSharedPreferences: FleuSharedPreferences) : UserRepository = UserRespositoryImpl(fleuApi, fleuSharedPreferences)
+
+    @Provides
+    fun providesPlaceRepository(fleuApi: FleuApi, fleuSharedPreferences: FleuSharedPreferences) : PlaceRepository = PlaceRepositoryImpl(fleuApi, fleuSharedPreferences)
 }

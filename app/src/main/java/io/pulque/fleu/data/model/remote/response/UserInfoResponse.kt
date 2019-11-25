@@ -1,6 +1,7 @@
-package io.pulque.fleu.data.model.remote
+package io.pulque.fleu.data.model.remote.response
 
 import com.google.gson.annotations.SerializedName
+import io.pulque.fleu.data.model.remote.response.PlaceResponse
 
 /*
  * @author savirdev on 2019-11-24

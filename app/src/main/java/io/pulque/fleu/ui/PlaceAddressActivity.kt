@@ -8,6 +8,7 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -15,10 +16,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import dagger.android.support.DaggerAppCompatActivity
 import io.pulque.fleu.R
 import io.pulque.fleu.di.ViewModelFactory
 import io.pulque.fleu.ui.adapters.AddressAdapter
+import io.pulque.fleu.utils.disable
+import io.pulque.fleu.utils.enable
+import io.pulque.fleu.utils.errors.FleuDataError
 import io.pulque.fleu.utils.setupClearButtonWithAction
 import io.pulque.fleu.viewmodel.PlaceAddressViewModel
 import kotlinx.android.synthetic.main.activity_place_address.*
@@ -27,7 +30,7 @@ import javax.inject.Inject
 private const val PERMISSIONS_REQUEST_LOCATION = 99
 private const val REQUEST_MAP = 10
 
-class PlaceAddressActivity : DaggerAppCompatActivity() {
+class PlaceAddressActivity : FleuBaseActivity() {
 
     @Inject
     lateinit var geocoder: Geocoder
@@ -35,18 +38,34 @@ class PlaceAddressActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var placeOrdersViewModel: PlaceAddressViewModel
+    lateinit var placeAddressViewModel: PlaceAddressViewModel
 
     private var addressAdapter: AddressAdapter? = null
+
+    private var currentAddress: Address? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place_address)
 
+        placeAddressViewModel = ViewModelProviders.of(this, viewModelFactory)[PlaceAddressViewModel::class.java]
+
+        subscribeSavePlace()
         subscribeAddressList()
         setupAddressInput()
+        setupNicknameInput()
         setupList()
+        setupSaveButton()
+        subscribeErrors()
 
+    }
+
+    private fun setupSaveButton(){
+        save.setOnClickListener {
+            currentAddress?.let {
+                placeAddressViewModel.saveAddress(nickname.text.toString(), it.latitude, it.longitude)
+            } ?: showErrorMessage("Error processing the place")
+        }
     }
 
     private fun setupList() {
@@ -56,10 +75,10 @@ class PlaceAddressActivity : DaggerAppCompatActivity() {
                 startActivityForResult(Intent(this, PickAddressActivity::class.java), REQUEST_MAP)
             }
         }, onAddressSelected = {
-            val intent = Intent()
-            intent.putExtra(EXTRA_ADDRESS, it)
-            setResult(RESULT_SAVE, intent)
-            finish()
+            currentAddress = it
+            address.setText(currentAddress?.getAddressLine(0))
+            address.clearFocus()
+            toggleSaveButton()
         })
 
         addresses.apply {
@@ -69,14 +88,32 @@ class PlaceAddressActivity : DaggerAppCompatActivity() {
         }
     }
 
-    private fun subscribeAddressList() {
-        placeOrdersViewModel =
-            ViewModelProviders.of(this, viewModelFactory)[PlaceAddressViewModel::class.java]
+    private fun subscribeErrors(){
+        placeAddressViewModel.error.observe(this, Observer {
+            when(it){
+                is FleuDataError.PlaceNotAddedError ->{
+                    showErrorMessage("Error adding new place")
+                }
+                is FleuDataError.RequestNotSuccesful ->{
+                    showErrorMessage("Request not performed")
+                }
+            }
+        })
+    }
 
-        placeOrdersViewModel.addressList.observe(this, Observer { addressList ->
+    private fun subscribeAddressList() {
+
+        placeAddressViewModel.addressList.observe(this, Observer { addressList ->
             addressList?.let {
                 addressAdapter?.addressList = it
             }
+        })
+    }
+
+    private fun subscribeSavePlace() {
+        placeAddressViewModel.savePlace.observe(this, Observer {
+            Toast.makeText(this, "Place added", Toast.LENGTH_SHORT).show()
+            finish()
         })
     }
 
@@ -88,12 +125,25 @@ class PlaceAddressActivity : DaggerAppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                 if (s.toString().isNotEmpty()) {
-                    placeOrdersViewModel.fetchAddress(s.toString())
+                    placeAddressViewModel.fetchAddress(s.toString())
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {}
 
+        })
+    }
+
+    private fun setupNicknameInput() {
+        nickname.setupClearButtonWithAction()
+        nickname.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                toggleSaveButton()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
         })
     }
 
@@ -137,6 +187,16 @@ class PlaceAddressActivity : DaggerAppCompatActivity() {
         return false
     }
 
+    private fun toggleSaveButton() {
+        currentAddress?.let {
+            if (nickname.text.isNotEmpty()) {
+                save.enable()
+            } else {
+                save.disable()
+            }
+        } ?: save.disable()
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -163,17 +223,18 @@ class PlaceAddressActivity : DaggerAppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_MAP) {
+            val tempAddress = data?.extras?.getParcelable(EXTRA_ADDRESS) as Address
             when (resultCode) {
                 RESULT_EDIT -> {
-                    val tempAddress = data?.extras?.getParcelable(EXTRA_ADDRESS) as Address
                     address.setText(tempAddress.getAddressLine(0))
                     address.requestFocus()
                     address.setSelection(tempAddress.getAddressLine(0).count())
                 }
 
                 RESULT_SAVE -> {
-                    setResult(RESULT_SAVE, data)
-                    finish()
+                    currentAddress = tempAddress
+                    address.setText(tempAddress.getAddressLine(0))
+                    toggleSaveButton()
                 }
             }
         }

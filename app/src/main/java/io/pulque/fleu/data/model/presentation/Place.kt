@@ -13,7 +13,6 @@ data class Place(
 
     val nickname: String,
     val lat: Double,
-    val lon: Double,
-    val createdAt: Date
+    val lon: Double
 
 ): Parcelable
